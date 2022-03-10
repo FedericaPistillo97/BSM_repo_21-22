@@ -38,14 +38,14 @@ A_21 = 1/(Cra*Rsv) # TO COMPLETE
 A_22 = -(1/Cra)*(1/Rsv+Kr) # TO COMPLETE
 A = np.array([[A_00, A_01, A_02], [A_10, A_11, A_12], [A_20, A_21, A_22]]) # Check A type and shape, by using type(A) and np.shape(A)
 X0 = np.array([Psa0*1.5, Psv0, Pra0]) # Check X0 type and shape, by using type(X0) and np.shape(X0)
-DT = 0.1 # TO COMPLETE
+DT = 0.001 # TO COMPLETE
 t_start = 0
 t_end = 50
 t = np.arange(t_start, t_end, DT) 
 L = np.size(t)
 X_exp = np.zeros((3,L))
 for j in range(L):
-    X_exp[:,j] = # TO COMPLETE
+    X_exp[:,j] = np.matmul(expm(A*(t[j]-t[0])),X0) # TO COMPLETE
     
 ### Eigenvectors and eigenvalues of A
 w,v = # TO COMPLETE
