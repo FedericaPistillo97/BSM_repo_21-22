@@ -48,10 +48,10 @@ for j in range(L):
     X_exp[:,j] = np.matmul(expm(A*(t[j]-t[0])),X0) # TO COMPLETE
     
 ### Eigenvectors and eigenvalues of A
-w,v = # TO COMPLETE
-lambda1 = # TO COMPLETE
-lambda2 = # TO COMPLETE
-lambda3 = # TO COMPLETE
+w,v = eig(A) # TO COMPLETE
+lambda1 = w[0] # TO COMPLETE
+lambda2 = w[1] # TO COMPLETE
+lambda3 = w[2] # TO COMPLETE
 alpha = # TO COMPLETE
 X_eig = # TO COMPLETE
 
