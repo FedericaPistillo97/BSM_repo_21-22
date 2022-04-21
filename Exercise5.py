@@ -69,24 +69,53 @@ VD = np.zeros(L)
 
 # breath definition
 T = 5 # period of the natural breath
-ventilation = # TO COMPLETE
+ventilation = "actual natural" # TO COMPLETE
 if ventilation == "natural":
     print("Natural breath")
+    Amus=3
+    Pmus=Amus*(np.cos(2*np.pi/T*t)-1)
+    Pm=np.zeros(L)
     # TO COMPLETE
 elif ventilation == "natural with increased amplitude":
     print("natural breath with increased amplitude")
+    Amus=3*2
+    Pmus= Amus*(np.cos(2*np.pi/T*t)-1)  
+    Pm = np.zeros(L)
     # TO COMPLETE
 elif ventilation == "natural with increased frequency":
     print("natural breath with increased frequency")
+    Amus = 3
+    T = 5/2
+    Pmus= Amus*(np.cos(2*np.pi/T*t)-1)  
+    Pm = np.zeros(L)
     # TO COMPLETE
 elif ventilation == "artificial":
     print("Artificial ventilation")
+    Am = -3
+    Pm= Am*(np.cos(2*np.pi/T*t)-1)  
+    Pmus = np.zeros(L)
     # TO COMPLETE
 elif ventilation == "mixed":
     print("Mixed ventilation")
+    Amus = 1
+    fi = 0.5*np.pi
+    Pmus = (Amus*np.cos(2*np.pi/T*t+fi)-Amus)
+    Am = -3
+    Pm = Am*(np.cos(2*np.pi/T*t)-1)
     # TO COMPLETE
 elif ventilation == "actual natural":
     print("Actual natural ventilation")
+    Pm = np.zeros(L)
+    Amus = -6
+    TI = 0.4 * T
+    TE = T - TI
+    tau = TE/5
+    tti = np.arange(0, TI, dt) 
+    PmusI = -Amus/TI/TE*tti*tti + Amus*T/TI/TE*tti 
+    tte=np.arange(TI, T, dt) 
+    PmusE =Amus/(1-np.exp(-TE/tau))*(np.exp(-(tte-TI)/tau)-np.exp(-(TE/tau)))
+    Pmustot = np.concatenate((PmusI, PmusE), axis=None) # one cycle
+    Pmus = np.concatenate((Pmustot, Pmustot, Pmustot, Pmustot, Pmustot[0]), axis=None)
     # TO COMPLETE
 else:
     print("The options are: natural; natural with increased amplitude; natural with increased frequency; artificial; mixed; actual natural")
